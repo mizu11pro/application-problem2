@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   # before_action :ensure_correct_user, only: [:update]
   before_action :authenticate_user!
+  # ページ遷移設定
 
   def show
     @book = Book.new
