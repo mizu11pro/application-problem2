@@ -5,6 +5,7 @@ class BooksController < ApplicationController
     @newbook = Book.new
     @book = Book.find(params[:id])
     @user = @book.user
+    @book_comment = BookComment.new
   end
 
   def index
@@ -51,7 +52,15 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body, :comment)
   end
+
+#   ログイン中にURLを入力すると他人が投稿した本の編集ページに遷移できないようにする
+#   def ensure_correct_user
+#       @book = Book.find(params[:id])
+#       unless @book.user == current_user
+#         redirect_to books_path
+#       end
+#   end
 
 end

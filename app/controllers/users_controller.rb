@@ -1,5 +1,14 @@
 class UsersController < ApplicationController
   # before_action :ensure_correct_user, only: [:update]
+  # ↓
+  # before_action :ensure_correct_user, only: [:edit, :update]
+#   この場合、ensure_correct_userメソッドのbefore_actionにeditを追加してあげる必要があります。
+# before_actionによってeditのアクションを起こす前にensure_correct_userメソッドが働きます。
+# ensure_correct_userについて詳しく解説すると
+# unlessはifの反対で「もし〜でなければ」という意味になりますので
+# unless @user == current_user
+# もし@userとcurrent_user(ログインしているユーザー)が一致してなければ、という意味になります。
+# 一致していなかった場合、ログインしているuserのshowページにリダイレクトする仕組みになっています
   before_action :authenticate_user!
   # ページ遷移設定
   def show

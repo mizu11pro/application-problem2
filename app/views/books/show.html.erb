@@ -13,22 +13,37 @@
 	<div class="col-xs-9">
 		<h2>Book detail</h2>
 
-		<table class="table">
-				<tr>
-					<td>
-						<%= link_to user_path(@book.user) do %>
-							<%= attachment_image_tag(@book.user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %><br>
-						<%= @book.user.name %>
-						<% end %>
-					</td>
-					<td><%= link_to @book.title, book_path(@book) %></td>
-					<td><%= @book.body %></td>
-					<% if @book.user == current_user %>
-					<td><%= link_to "Edit", edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
-					<td><%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
+	<table class="table">
+			<tr>
+				<td>
+					<%= link_to user_path(@book.user) do %>
+						<%= attachment_image_tag(@book.user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %><br>
+					<%= @book.user.name %>
 					<% end %>
-				</tr>
-			</table>
+				</td>
+				<td><%= link_to @book.title, book_path(@book) %></td>
+				<td><%= @book.body %></td>
+				<% if @book.user == current_user %>
+				<td><%= link_to "Edit", edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
+				<td><%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
+				<% end %>
+			</tr>
+	</table>
+
+	<div class="comments">
+		<p>コメント件数<%= @book.book_comments.count %></p>
+		<% @book.book_comments.each do |book_comment| %>
+			<%= attachment_image_tag @user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg" %>
+			<%= book_comment.user.name %>
+			<!--%= book_comment.created_at.strftime('%Y/%m/%d') %>--><%= book_comment.comment %>
+		<% end %>
+	</div>
+	<div class="new-comment">
+		<%= form_with(model:[@book, @book_comment], local: true) do |comment| %>
+		<%= comment.text_area :comment, row:'5',placeholder: "コメント入力欄" %>
+		<%= comment.submit "送信" %>
+		<% end %>
+	</div>
 
 	</div>
 </div>
