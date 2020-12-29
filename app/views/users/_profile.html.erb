@@ -1,6 +1,7 @@
 <table class="table">
 	<tbody>
-	<%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
+	<!--%= attachment_image_tag user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg" %>-->
+	<%= attachment_image_tag user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg" %>
 	<tr>
 		<th>name</th>
 		<th><%= user.name %></th>
