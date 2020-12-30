@@ -56,7 +56,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :comment)
+    params.require(:book).permit(:title, :body)
   end
 
 #   ログイン中にURLを入力すると他人が投稿した本の編集ページに遷移できないようにする

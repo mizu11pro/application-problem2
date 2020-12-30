@@ -17,8 +17,9 @@
 			<tr>
 				<td>
 					<%= link_to user_path(@book.user) do %>
-						<%= attachment_image_tag(@book.user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %><br>
-					<%= @book.user.name %>
+						<!--%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no-image.jpg" %><br>-->
+						<%= attachment_image_tag @user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg" %><br>
+						<%= @book.user.name %>
 					<% end %>
 				</td>
 				<td><%= link_to @book.title, book_path(@book) %></td>
@@ -27,24 +28,18 @@
 				<td><%= link_to "Edit", edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
 				<td><%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
 				<% end %>
+				<td class=<%= "favorites" +@book.id.to_s %>>
+						<!--to_i=integer(整数)-->
+						<!--to_s=string(文字列)-->
+					<%= render 'favorites/favorite', book: @book %>
+						<!--引数の代入はeach分のブロック数を代入-->
+				</td>
+				<td>コメント件数:<%= @book.book_comments.count %></td>
 			</tr>
 	</table>
-
-	<div class="comments">
-		<p>コメント件数<%= @book.book_comments.count %></p>
-		<% @book.book_comments.each do |book_comment| %>
-			<%= attachment_image_tag @user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg" %>
-			<%= book_comment.user.name %>
-			<!--%= book_comment.created_at.strftime('%Y/%m/%d') %>--><%= book_comment.comment %>
-		<% end %>
-	</div>
-	<div class="new-comment">
-		<%= form_with(model:[@book, @book_comment], local: true) do |comment| %>
-		<%= comment.text_area :comment, row:'5',placeholder: "コメント入力欄" %>
-		<%= comment.submit "送信" %>
-		<% end %>
-	</div>
-
+			<div class=<%= "comment-bottoms" +@book.id.to_s %>>
+					<%= render 'book_comments/book_comment', book: @book, book_comment: @book_comment, user: @user %>
+			</div>
 	</div>
 </div>
 
