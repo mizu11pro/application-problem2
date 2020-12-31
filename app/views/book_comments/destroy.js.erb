@@ -1,3 +1,3 @@
-$('.comment-bottoms'+<%= @book.id %>).html("<%= j(render 'book_comments/book_comment', book: @book, book_comment: @book_comment, user: @user ) %>");
+$('.of_comments'+<%= @book.id %>).html("<%= j(render 'book_comments/of_comments', user: current_user, book: @book, newbook: @newbook, book_comment: @book_comment ) %>");
 
 $('textarea').val('');

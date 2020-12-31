@@ -1,0 +1,33 @@
+<table class="table">
+  <h2>User info</h2>
+	<tbody>
+  	<!--%= attachment_image_tag user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg" %>-->
+  	<%= attachment_image_tag user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg" %>
+  	<tr>
+  		<th>name</th>
+  		<th><%= user.name %></th>
+  	</tr>
+  	<tr>
+  		<th>introduction</th>
+  		<th><%= user.introduction %></th>
+  	</tr>
+	</tbody>
+</table>
+
+<% if user == current_user %>
+	<!--%= link_to '設定', edit_user_path(user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{user.id}" %>-->
+  <%= link_to "", edit_user_path(user), class:"btn btn-outline-secondary btn-block fas fa-user-cog" %>
+<% end %>
+
+<%= render "books/error_message", book: @book %>
+<%= form_with model:book, local:true do |f| %>
+  <div class=""><%= f.label :title %></div>
+  <div><%= f.text_field :title, class: 'book_title' %></div>
+
+  <div class=""><%= f.label :opinion %></div>
+  <div><%= f.text_area :body, class: 'book_opinion' %></div>
+
+  <div class="">
+    <%= f.submit class: 'btn btn-primary mt-3' %>
+  </div>
+<% end %>

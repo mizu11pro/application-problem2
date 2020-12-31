@@ -1,0 +1,3 @@
+$('.lists'+<%= @book.id %>).html("<%= j(render 'users/list', user: @user, book: @book )%>");
+
+$('textarea').val('');

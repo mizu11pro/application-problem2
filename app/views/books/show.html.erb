@@ -1,45 +1,12 @@
-
-<div class="row">
-	<div class="col-xs-3">
-
-		<h2>User info</h2>
-		<%= render 'users/profile', user: @user %>
-
-		<h2>New book</h2>
-		<%= render 'books/form', book: @newbook %>
-
+<div class="col-md-3 mt-5">
+	<div class=<%= "lists" +@book.id.to_s %>>
+		<%= render 'users/list', user: @user, book: @book %>
 	</div>
-
-	<div class="col-xs-9">
-		<h2>Book detail</h2>
-
-	<table class="table">
-			<tr>
-				<td>
-					<%= link_to user_path(@book.user) do %>
-						<!--%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no-image.jpg" %><br>-->
-						<%= attachment_image_tag @user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg" %><br>
-						<%= @book.user.name %>
-					<% end %>
-				</td>
-				<td><%= link_to @book.title, book_path(@book) %></td>
-				<td><%= @book.body %></td>
-				<% if @book.user == current_user %>
-				<td><%= link_to "Edit", edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
-				<td><%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
-				<% end %>
-				<td class=<%= "favorites" +@book.id.to_s %>>
-						<!--to_i=integer(整数)-->
-						<!--to_s=string(文字列)-->
-					<%= render 'favorites/favorite', book: @book %>
-						<!--引数の代入はeach分のブロック数を代入-->
-				</td>
-				<td>コメント件数:<%= @book.book_comments.count %></td>
-			</tr>
-	</table>
-			<div class=<%= "comment-bottoms" +@book.id.to_s %>>
-					<%= render 'book_comments/book_comment', book: @book, book_comment: @book_comment, user: @user %>
-			</div>
-	</div>
+	<!--%= render 'books/form', book: @book %>-->
 </div>
 
+<div class="col-md-8 offset-md-1 mt-5">
+  <div class=<%= "of_comments" +@book.id.to_s %>>
+  	<%= render 'book_comments/of_comments', user: current_user, book: @book, newbook: @newbook, book_comment: @book_comment %>
+  </div>
+</div>

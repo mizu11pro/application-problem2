@@ -1,16 +1,12 @@
 <%= render "books/error_message", book: @book %>
 <%= form_with model:book, local:true do |f| %>
-  <div class="field row">
-    <%= f.label :title %>
-    <%= f.text_field :title, class: 'col-xs-12 book_title' %>
-  </div>
+  <div class=""><%= f.label :title %></div>
+  <div><%= f.text_field :title, class: 'book_title' %></div>
 
-  <div class="field row">
-    <%= f.label :opinion %>
-    <%= f.text_area :body, class: 'col-xs-12 book_body' %>
-  </div>
+  <div class=""><%= f.label :opinion %></div>
+  <div><%= f.text_area :body, class: 'book_opinion' %></div>
 
-  <div class="actions row">
-    <%= f.submit class: 'btn btn-primary col-xs-12' %>
+  <div class="">
+    <%= f.submit class: 'btn btn-primary mt-3' %>
   </div>
 <% end %>
