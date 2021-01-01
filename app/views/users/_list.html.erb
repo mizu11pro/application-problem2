@@ -11,6 +11,22 @@
   		<th>introduction</th>
   		<th><%= user.introduction %></th>
   	</tr>
+  	<tr>
+  	  <th>follow</th>
+  	  <th>
+  	    <%= link_to user_followers_path(user) do %>
+  	      <%= user.followings.count %>
+  	    <% end %>
+  	  </th>
+  	</tr>
+  	<tr>
+  	  <th>followers</th>
+  	  <th>
+  	    <%= link_to user_followings_path(user) do %>
+  	      <%= user.followers.count %>
+  	    <% end %>
+  	  </th>
+  	</tr>
 	</tbody>
 </table>
 
@@ -28,6 +44,6 @@
   <div><%= f.text_area :body, class: 'book_opinion' %></div>
 
   <div class="">
-    <%= f.submit class: 'btn btn-primary mt-3' %>
+    <%= f.submit class: 'btn btn-outline-info mt-3' %>
   </div>
 <% end %>
