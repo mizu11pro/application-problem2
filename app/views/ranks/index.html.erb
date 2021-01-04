@@ -1,0 +1,46 @@
+<!--<table class="table">-->
+<!--  	<tbody>-->
+<!--  		% @rankbook.each.with_index(1) do |book, i| %>-->
+<!--  		<tr>-->
+<!--  			<th>Ranking</th>-->
+<!--  			<td>第%= i %>位</td>-->
+<!--  		</tr>-->
+<!--  		<tr>-->
+<!--  			<th>User</th>-->
+<!--  			<td>%= book.user.name %></td>-->
+<!--  		</tr>-->
+<!--  		<tr>-->
+<!--  			<th>Title</th>-->
+<!--  			<td>%= book.body %></td>-->
+<!--  		</tr>-->
+<!--  		<tr>-->
+<!--  			<th>Favo</th>-->
+<!--  			<td>%= book.favorites.count %></td>-->
+<!--  		</tr>-->
+<!--  		% end %>-->
+<!--  		<div class="rank"></div>-->
+<!--  	</tbody>-->
+<!--</table>-->
+
+<table class="table">
+    <thead>
+  			<th>Ranking</th>
+  			<th>User</th>
+  			<th>Title</th>
+  			<th>Favo</th>
+
+  			<th>comment</th>
+    </thead>
+  	<tbody>
+  		<% @rankbook.each.with_index(1) do |book, i| %>
+  		<tr>
+  			<td>第<%= i %>位</td>
+  			<td><%= book.user.name %></td>
+  			<td><%= book.body %></td>
+  			<td><%= book.favorites.count %></td>
+
+  			<td><%= book.book_comments.count %></td>
+  		</tr>
+  		<% end %>
+  	</tbody>
+</table>

@@ -66,4 +66,19 @@ class User < ApplicationRecord
       # このメソッドは、ビューでフォローする/フォローを外すボタンの表示で用いています。
   end
 
+  # 検索機能
+  def self.search(search,word)
+   # 前方一致
+   if search == "forward_match"
+    @user = User.where("name LIKE?","#{word}%")
+    # 完全一致
+   elsif search == "perfect_match"
+    @user = User.where(name:"#{word}")
+
+   else
+    @user = User.all
+   end
+  end
+
+
 end

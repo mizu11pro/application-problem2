@@ -6,6 +6,10 @@
 			<th>name</th>
 			<th>title</th>
 			<th>body</th>
+			<% if book.user == current_user %>
+				<th>編集</th>
+				<th>削除</th>
+			<% end %>
 			<th>favo</th>
 			<th>comment</th>
 		</tr>
