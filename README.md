@@ -23,3 +23,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+webcampのrailsを学ぼうで学習した内容。
